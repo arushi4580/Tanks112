@@ -13,6 +13,9 @@ class Bullet(object):
         self.y = y
         self.r = 5
         self.numWallsHit = 0
+        
+    def __repr__(self):
+        return "Bullet " + str(self.angle)
     
     def moveBullet(self):
         self.x += self.speed * math.cos(math.radians(self.angle))
@@ -45,6 +48,7 @@ class Bullet(object):
         y2 = wall.y2
         if ((x1 <= self.x + self.r <= x2) or (x1 <= self.x - self.r <= x2)) and ((y1 <= self.y + self.r <= y2) or (y1 <= self.y - self.r <= y2)):
             if isinstance(wall, wallClass.DestructibleWall):
+                print(wall, wall.hits)
                 wall.hits += 1
                 wall.color = "sienna2"
             return True
